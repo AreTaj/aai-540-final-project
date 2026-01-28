@@ -11,8 +11,8 @@ This repository is structured around the components required for the ML System O
 - [x] **Data Catalog**: Athena table setup for querying and validation.
 - [x] **Exploratory Data Analysis (EDA)**: Analysis of order trends and data quality.
 - [x] **Feature Engineering**: Creation of features (e.g., delivery time, review scores) and storage in SageMaker Feature Store.
-- [x] **Data Splitting**: Stratified split into Train (40%), Validation (10%), Test (10%), and Production Holdout (40%).
-- **Current Notebook**: `01_Data_Preparation.ipynb` (Budget-Optimized)
+- [x] **Data Splitting**: Time-based split (to prevent leakage) into Train (40%), Validation (10%), Test (10%), and Production Holdout (40%).
+- **Current Notebook**: `01_Data_Preparation.ipynb` (Includes auto-dependency installation & budget optimizations)
 
 ### 2. Model Training & Registry
 - [ ] **Model Training**: TBD
