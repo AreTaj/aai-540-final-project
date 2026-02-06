@@ -15,13 +15,13 @@ This repository is structured around the components required for the ML System O
 - **Current Notebook**: `01_Data_Preparation.ipynb` (Includes auto-dependency installation & budget optimizations)
 
 ### 2. Model Training & Registry
-- [ ] **Model Training**: TBD
-- [ ] **Model Evaluation**: TBD
-- [ ] **Model Registry**: TBD - Validating registration of model versions.
+- [x] **Model Training**: XGBoost Baseline implemented (`02_Modeling.ipynb`).
+- [x] **Model Evaluation**: Metrics (Accuracy, F1, ROC-AUC) calculation and comparison.
+- [x] **Model Registry**: Training artifacts correctly stored in S3 with explicit registration logic.
 
 ### 3. Deployment & Inference
-- [ ] **Batch Inference / Endpoint**: TBD
-- [ ] **Output Validation**: TBD
+- [x] **Batch Inference / Endpoint**: Batch Transform job implemented for offline predictions on test set.
+- [x] **Output Validation**: S3 output retrieval and verification of prediction results.
 
 ### 4. Pipelines & Automation (CI/CD)
 - [ ] **SageMaker Pipelines**: TBD - Automated DAG definition.
@@ -33,3 +33,7 @@ This repository is structured around the components required for the ML System O
 
 ## Repository Structure
 * `01_Data_Preparation.ipynb`: Primary Data Preparation, Feature Engineering, and Feature Store ingestion pipeline. *Note: optimized for AWS Learner Labs (prevents redundant S3 uploads and Feature Group creates).*
+* `02_Modeling.ipynb`: Optimized Model Training and Batch Transform pipeline.
+    *   **Cost-Optimized**: Skips training if artifacts exist in S3.
+    *   **Fast Startup**: Loads pre-processed splits directly from S3 (no re-running 01).
+    *   **Robust**: Implements bug-free Batch Transform logic with explicit model registration.
