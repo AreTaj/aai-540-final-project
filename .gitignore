@@ -18,3 +18,5 @@ venv/
 
 # Tests
 
+kaggle_download/
+olist_raw/
