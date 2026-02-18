@@ -24,16 +24,26 @@ This repository is structured around the components required for the ML System O
 - [x] **Output Validation**: S3 output retrieval and verification of prediction results.
 
 ### 4. Pipelines & Automation (CI/CD)
-- [ ] **SageMaker Pipelines**: TBD - Automated DAG definition.
-- [ ] **CI/CD States**: TBD - Demonstration of successful and failed pipeline states.
+- [x] **SageMaker Pipelines**: Automated DAG definition for end-to-end training and evaluation.
+- [x] **CI/CD States**: Demonstration of successful and failed pipeline states using `ForceFailCI` parameters.
 
 ### 5. Monitoring & Observability
-- [ ] **Infrastructure Dashboards**: TBD
-- [ ] **Model & Data Quality Reports**: TBD
+- [x] **Infrastructure Dashboards**: Centralized CloudWatch dashboard for endpoint health and processing jobs.
+- [x] **Model & Data Quality Reports**: Automated violation detection for data drift and model performance decay.
 
 ## Repository Structure
-* `01_Data_Preparation.ipynb`: Primary Data Preparation, Feature Engineering, and Feature Store ingestion pipeline. *Note: optimized for AWS Learner Labs (prevents redundant S3 uploads and Feature Group creates).*
+
+### Primary Modular Pipeline
+The core project logic is split into sequential, modular notebooks for easier maintainability and cost control:
+* `01_Data_Preparation.ipynb`: Primary Data Preparation, Feature Engineering, and Feature Store ingestion pipeline. *Note: optimized for AWS Learner Labs.*
 * `02_Modeling.ipynb`: Optimized Model Training and Batch Transform pipeline.
-    *   **Cost-Optimized**: Skips training if artifacts exist in S3.
-    *   **Fast Startup**: Loads pre-processed splits directly from S3 (no re-running 01).
-    *   **Robust**: Implements bug-free Batch Transform logic with explicit model registration.
+* `03_Deployment_and_Monitoring.ipynb`: Real-time endpoint deployment, Data Capture, and SageMaker Model Monitor setup.
+* `03_Deployment_and_Monitoring_CLOUDWATCH.ipynb`: Extended monitoring with CloudWatch Alarms and Custom Dashboards.
+* `04_CI_CD_Pipeline.ipynb`: Production-grade orchestration using SageMaker Pipelines, featuring parameterized execution and CI/CD validation.
+
+### Parallel Development Paths
+The following notebooks represent integrated, monolithic versions of the pipeline used during specific project modules or alternative execution paths:
+* `AAI-540-G8-Project-Parallel-Path.ipynb`: Initial end-to-end integration testing.
+* `AAI-540-G8-Project-Parallel-Path-Mod-5.ipynb`: Unified workflow focusing on Module 5 (Monitoring) deliverables.
+* `AAI-540-G8-Project-Parallel-Path-Mod-6.ipynb`: Unified workflow focusing on Module 6 (CI/CD) deliverables.
+* `AAI-540-G8-Project-Version2.ipynb` & `AAI-540-G8-Project.ipynb`: Earlier development iterations and team collaboration drafts.
